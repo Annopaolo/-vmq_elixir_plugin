@@ -14,8 +14,28 @@ defmodule VmqElixirPlugin.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      extra_applications: [:logger]
+      mod: {VmqElixirPlugin.Application, []},
+      env: [vmq_plugin_hooks()]
     ]
+  end
+
+
+  defp vmq_plugin_hooks do
+    hooks = [
+      {VernemqElixirPlugin, :auth_on_register, 5, []},
+      {VernemqElixirPlugin, :on_register, 3, []},
+      {VernemqElixirPlugin, :on_client_wakeup, 1, []},
+      {VernemqElixirPlugin, :on_client_offline, 1, []},
+      {VernemqElixirPlugin, :on_client_gone, 1, []},
+      {VernemqElixirPlugin, :auth_on_subscribe, 3, []},
+      {VernemqElixirPlugin, :on_subscribe, 3, []},
+      {VernemqElixirPlugin, :on_unsubscribe, 3, []},
+      {VernemqElixirPlugin, :auth_on_publish, 6, []},
+      {VernemqElixirPlugin, :on_publish, 6, []},
+      {VernemqElixirPlugin, :on_deliver, 4, []},
+      {VernemqElixirPlugin, :on_offline_message, 5, []}
+    ]
+    {:vmq_plugin_hooks, hooks}
   end
 
   # Run "mix help deps" to learn about dependencies.
