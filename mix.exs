@@ -15,27 +15,18 @@ defmodule VmqElixirPlugin.MixProject do
   def application do
     [
       mod: {VmqElixirPlugin.Application, []},
-      env: [vmq_plugin_hooks()]
+      env: [
+        vmq_plugin_hooks: [
+          {:auth_on_publish, VmqElixirPlugin, :auth_on_publish, 6, []},
+          {:auth_on_register, VmqElixirPlugin, :auth_on_register, 5, []},
+          {:auth_on_subscribe, VmqElixirPlugin, :auth_on_subscribe, 3, []},
+          {:on_client_offline, VmqElixirPlugin, :on_client_offline, 1, []},
+          {:on_client_gone, VmqElixirPlugin, :on_client_gone, 1, []},
+          {:on_publish, VmqElixirPlugin, :on_publish, 6, []},
+          {:on_register, VmqElixirPlugin, :on_register, 3, []}
+        ]
+      ]
     ]
-  end
-
-
-  defp vmq_plugin_hooks do
-    hooks = [
-      {VernemqElixirPlugin, :auth_on_register, 5, []},
-      {VernemqElixirPlugin, :on_register, 3, []},
-      {VernemqElixirPlugin, :on_client_wakeup, 1, []},
-      {VernemqElixirPlugin, :on_client_offline, 1, []},
-      {VernemqElixirPlugin, :on_client_gone, 1, []},
-      {VernemqElixirPlugin, :auth_on_subscribe, 3, []},
-      {VernemqElixirPlugin, :on_subscribe, 3, []},
-      {VernemqElixirPlugin, :on_unsubscribe, 3, []},
-      {VernemqElixirPlugin, :auth_on_publish, 6, []},
-      {VernemqElixirPlugin, :on_publish, 6, []},
-      {VernemqElixirPlugin, :on_deliver, 4, []},
-      {VernemqElixirPlugin, :on_offline_message, 5, []}
-    ]
-    {:vmq_plugin_hooks, hooks}
   end
 
   # Run "mix help deps" to learn about dependencies.
