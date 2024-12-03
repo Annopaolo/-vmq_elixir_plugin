@@ -15,6 +15,7 @@ defmodule VmqElixirPlugin.MixProject do
   def application do
     [
       mod: {VmqElixirPlugin.Application, []},
+      extra_applications: [:logger],
       env: [
         vmq_plugin_hooks: [
           {:auth_on_publish, VmqElixirPlugin, :auth_on_publish, 6, []},

@@ -5,10 +5,12 @@ defmodule VmqElixirPlugin.Application do
 
   use Application
 
+  require Logger
+
   @app_version Mix.Project.config()[:version]
 
   def start(_type, _args) do
-    IO.puts("Starting Elixir plugin v#{@app_version}.")
+    Logger.info("Starting Elixir plugin v#{@app_version}.")
 
     children = [
       # Starts a worker by calling: Aaaa.Worker.start_link(arg)
