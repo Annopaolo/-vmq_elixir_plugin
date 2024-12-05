@@ -4,7 +4,7 @@ defmodule VmqElixirPlugin do
   """
 
   def auth_on_register(_peer, {_mountpoint, clientid}, _username, _password, _clean_session?) do
-    IO.puts("*** auth_on_register #{clientid}")
+    :logger.info("*** auth_on_register #{clientid}")
     {:ok, []}
   end
 
@@ -51,7 +51,7 @@ defmodule VmqElixirPlugin do
   end
 
   def on_publish(_username, {_mountpoint, clientid}, _qos, topic, payload, _retain?) do
-    IO.puts("*** on_publish #{clientid} / #{topic} / #{payload}")
+    :logger.info("*** on_publish #{clientid} / #{topic} / #{payload}")
     :ok
   end
 

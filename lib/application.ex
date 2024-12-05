@@ -3,14 +3,19 @@ defmodule VmqElixirPlugin.Application do
   # for more information on OTP Applications
   @moduledoc false
 
-  use Application
 
   require Logger
+  use Application
 
   @app_version Mix.Project.config()[:version]
 
   def start(_type, _args) do
-    Logger.info("Starting Elixir plugin v#{@app_version}.")
+    :logger.info("Starting Elixir plugin v#{@app_version}.")
+
+    # LoggerBackends.add(MyCustomBackend)
+    # LoggerBackends.remove(:default)
+    # LoggerBackends.remove(:ssl_handler)
+    # LoggerBackends.remove(:console)
 
     children = [
       # Starts a worker by calling: Aaaa.Worker.start_link(arg)
@@ -20,11 +25,11 @@ defmodule VmqElixirPlugin.Application do
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: VmqElixirPlugin.Supervisor]
-    IO.puts("Here too")
+    :logger.info("Here too")
 
     res = Supervisor.start_link(children, opts)
 
-    IO.puts("Finally here")
+    :logger.info("Finally here")
     res
   end
 end

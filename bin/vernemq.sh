@@ -284,6 +284,10 @@ EOF
     echo "plugins.vmq_elixir_plugin = on" >> ${VERNEMQ_CONF_FILE}
     echo "plugins.vmq_elixir_plugin.path = /etc/vmq_elixir_plugin" >> ${VERNEMQ_CONF_FILE}
 
+
+    echo "log.console.console.format = json" >> ${VERNEMQ_CONF_FILE}
+
+
     echo "########## End ##########" >> ${VERNEMQ_CONF_FILE}
 fi
 

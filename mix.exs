@@ -15,7 +15,6 @@ defmodule VmqElixirPlugin.MixProject do
   def application do
     [
       mod: {VmqElixirPlugin.Application, []},
-      extra_applications: [:logger],
       env: [
         vmq_plugin_hooks: [
           {:auth_on_publish, VmqElixirPlugin, :auth_on_publish, 6, []},
@@ -33,8 +32,7 @@ defmodule VmqElixirPlugin.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      # {:dep_from_hexpm, "~> 0.3.0"},
-      # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
+      {:mississippi, github: "secomind/mississippi"}
     ]
   end
 end
